@@ -75,4 +75,118 @@
     </section>
     <script src="/assets/js/main.js"></script>
   </body>
+
+  <!-- ESSENCE SECTION -->
+  <section class="essence section">
+    <!-- TOP ROW -->
+    <div class="essence-row">
+      <!-- Left: heading + paragraph -->
+      <div class="essence-col left">
+        <h2 class="essence-title">Our Essence</h2>
+        <p class="essence-text">
+          We believe every celebration is a story waiting to be told — one that
+          captures emotion, elegance, and meaning. Through a refined blend of
+          artistry, culture, and connection, Coker Creative transforms visions
+          into unforgettable experiences, each one distinct and timeless. Every
+          detail is an expression of artistry, culture, and connection.
+        </p>
+      </div>
+
+      <!-- Right: 4 slim vertical boxes, staggered heights -->
+      <div class="essence-col right">
+        <div class="essence-stacks">
+          <div
+            class="stack-box b1"
+            style="--bg: url('/assets/images/essence-1.jpg')"
+          ></div>
+          <div
+            class="stack-box b2"
+            style="--bg: url('/assets/images/essence-2.jpg')"
+          ></div>
+          <div
+            class="stack-box b3"
+            style="--bg: url('/assets/images/essence-3.jpg')"
+          ></div>
+          <div
+            class="stack-box b4"
+            style="--bg: url('/assets/images/essence-4.jpg')"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="essence-row">
+      <!-- Left: signature video-in-text -->
+      <div class="essence-col left">
+        <div class="signature-block">
+          <!-- Inline SVG mask with text that reveals the video only inside letters -->
+          <svg
+            class="signature-svg"
+            viewBox="0 0 1200 420"
+            aria-hidden="true"
+            role="img"
+          >
+            <defs>
+              <!-- White = visible, Black = hidden -->
+              <mask id="signature-mask" maskUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="1200" height="420" fill="black" />
+                <!-- Top line -->
+                <text
+                  x="0"
+                  y="170"
+                  fill="white"
+                  font-family="MADE Bon Voyage, serif"
+                  font-size="150"
+                  letter-spacing="2"
+                >
+                  COKER CREATIVE
+                </text>
+                <!-- Bottom line -->
+                <text
+                  x="0"
+                  y="340"
+                  fill="white"
+                  font-family="MADE Bon Voyage, serif"
+                  font-size="140"
+                  letter-spacing="2"
+                >
+                  SIGNATURE EXPERIENCES
+                </text>
+              </mask>
+            </defs>
+
+            <!-- The video is placed inside the SVG via foreignObject and masked by the text -->
+            <foreignObject
+              x="0"
+              y="0"
+              width="1200"
+              height="420"
+              mask="url(#signature-mask)"
+            >
+              <video
+                xmlns="http://www.w3.org/1999/xhtml"
+                class="signature-video"
+                src="/assets/video/signature-loop.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+              ></video>
+            </foreignObject>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right: paragraph -->
+      <div class="essence-col right">
+        <p class="essence-text">
+          Each experience begins with a dream — and we bring that dream to life
+          with precision, creativity, and elegance. Whether it’s an intimate
+          wedding, a grand corporate gala, or a luxury private soirée, we turn
+          visions into beautifully orchestrated experiences.
+        </p>
+      </div>
+    </div>
+  </section>
 </html>
