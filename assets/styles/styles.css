@@ -452,12 +452,22 @@ h4 {
 
   /* signature video scaling */
   .signature-block {
-    margin: 0 auto;
-    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   .signature-svg {
-    width: 100%;
+    transform: translateX(0);
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Center and scale text visually inside the SVG */
+  .signature-svg text {
+    transform: translateX(50%);
+    text-anchor: middle;
   }
 }
 
@@ -514,9 +524,16 @@ h4 {
     height: 240px;
   }
 
-  /* make sure video text fits on narrow screens */
+  .signature-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
   .signature-svg text {
-    font-size: 100px !important;
+    transform: translateX(50%);
+    text-anchor: middle;
   }
 }
 
