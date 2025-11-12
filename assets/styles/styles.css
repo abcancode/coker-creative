@@ -64,6 +64,10 @@ h4 {
   list-style: none;
 }
 
+.nav.open {
+  display: block !important;
+}
+
 .nav a {
   text-decoration: none;
   color: var(--clr-dark);
@@ -246,64 +250,81 @@ h4 {
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
 }
 
-/* ---- Bottom-left — signature video text ---- */
 .signature-block {
   width: 100%;
+  max-width: 2400px;
+  margin: 0 auto;
+  overflow: visible; /* required so nothing gets clipped by outer container */
+  position: relative;
 }
 
+/* SVG container */
 .signature-svg {
   display: block;
   width: 100%;
   height: auto;
+  overflow: visible;
 }
 
-/* Ensure the video fills the mask area cleanly */
+/* Video fill */
 .signature-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  border: none;
+  outline: none;
 }
 
-/* Optional: subtle shadow under the masked text for contrast on light bg */
+/* small visual separator */
 .signature-block::after {
   content: "";
   display: block;
   height: 1px;
-  margin-top: 8px;
+  margin-top: 12px;
   background: linear-gradient(
     to right,
     transparent,
-    rgba(0, 0, 0, 0.08),
+    rgba(0, 0, 0, 0.1),
     transparent
   );
 }
 
-/* ===========================================
-   RESPONSIVE STYLES — MOBILE & TABLET
-=========================================== */
+/* ==========================================================
+   RESPONSIVE FIXES — COKER CREATIVE
+   Fully mobile-friendly for all screen sizes
+========================================================== */
 
-/* ----------- Tablet (≤ 992px) ----------- */
-@media (max-width: 992px) {
+/* ---------- LARGE LAPTOPS (≤1200px) ---------- */
+@media (max-width: 1200px) {
   .hero h1 {
-    font-size: 48px;
+    font-size: 52px;
   }
-
   .hero .subheading {
-    font-size: 16px;
+    font-size: 17px;
   }
+  .essence-title {
+    font-size: 40px;
+  }
+}
 
+/* ---------- TABLETS LANDSCAPE (≤992px) ---------- */
+@media (max-width: 992px) {
   .nav ul {
     gap: 20px;
+  }
+  .hero h1 {
+    font-size: 46px;
+    margin-bottom: 40px;
+  }
+  .hero .subheading {
+    font-size: 16px;
   }
 
   .essence .essence-row {
     gap: 36px;
   }
-  .essence-title {
-    font-size: 38px;
-  }
-  /* reduce stagger for shorter viewports */
+
   .stack-box.b1 {
     height: 120px;
   }
@@ -316,32 +337,39 @@ h4 {
   .stack-box.b4 {
     height: 240px;
   }
+
+  .essence-title {
+    font-size: 36px;
+  }
+  .essence-text {
+    font-size: 15.5px;
+  }
 }
 
-/* ----------- Mobile Navigation (≤ 768px) ----------- */
+/* ---------- TABLETS PORTRAIT / LARGE MOBILES (≤768px) ---------- */
 @media (max-width: 768px) {
-  /* Show hamburger */
+  /* ---- HEADER ---- */
   .menu-toggle {
     display: block;
     color: var(--clr-dark);
   }
 
-  /* Hide desktop nav */
   .nav {
     display: none;
     position: absolute;
-    top: 85px;
+    top: 70px;
     right: 0;
-    background: var(--clr-light);
     width: 100%;
-    padding: 20px 0;
+    background: var(--clr-light);
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 99;
   }
 
   .nav ul {
     flex-direction: column;
-    gap: 18px;
+    gap: 20px;
   }
 
   .nav a {
@@ -350,58 +378,65 @@ h4 {
     font-weight: 500;
   }
 
-  .header {
-    padding: 15px 0;
-  }
-
   .logo img {
-    height: 48px;
+    height: 45px;
   }
 
-  /* Hero adjustments */
+  /* ---- HERO ---- */
   .hero {
     padding: 0 20px;
+    background-position: top center;
   }
 
   .hero h1 {
     font-size: 40px;
     line-height: 1.2;
+    margin-bottom: 28px;
   }
 
   .hero .subheading {
     font-size: 16px;
-    padding: 0 10px;
+    line-height: 1.6;
+    margin-bottom: 24px;
   }
 
   .hero-buttons {
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
   }
 
   .btn {
     width: 100%;
     max-width: 260px;
-    margin: auto;
+    margin: 0 auto;
   }
 
+  /* ---- ESSENCE ---- */
   .essence .essence-row {
-    grid-template-columns: 1fr; /* stack left over right */
+    grid-template-columns: 1fr;
     gap: 28px;
     margin-bottom: 52px;
   }
 
-  /* Make the slim boxes horizontally scrollable for a premium feel */
+  .essence-title,
+  .essence-text {
+    text-align: center;
+  }
+
+  /* make slim boxes horizontally scrollable */
   .essence-stacks {
     display: flex;
     gap: 12px;
     overflow-x: auto;
-    padding-bottom: 6px;
-    scroll-snap-type: x proximity;
+    padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
   }
+
   .stack-box {
-    flex: 0 0 140px;
+    flex: 0 0 150px;
     scroll-snap-align: start;
   }
+
   .stack-box.b1 {
     height: 160px;
   }
@@ -415,23 +450,32 @@ h4 {
     height: 280px;
   }
 
-  .essence-title {
-    font-size: 34px;
+  /* signature video scaling */
+  .signature-block {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .signature-svg {
+    width: 100%;
   }
 }
 
-/* ----------- Small Mobile (≤ 480px) ----------- */
+/* ---------- SMALL PHONES (≤480px) ---------- */
 @media (max-width: 480px) {
+  .header {
+    padding: 14px 0;
+  }
+
   .logo img {
-    height: 42px;
+    height: 36px;
   }
 
-  .hero {
-    padding: 0 15px;
-  }
-
+  /* Hero adjustments */
   .hero h1 {
     font-size: 32px;
+    line-height: 1.25;
+    margin-bottom: 24px;
   }
 
   .hero .subheading {
@@ -443,20 +487,20 @@ h4 {
     font-size: 14px;
   }
 
-  .nav {
-    top: 75px;
+  /* Essence adjustments */
+  .essence-title {
+    font-size: 28px;
   }
 
-  .essence-title {
-    font-size: 30px;
-  }
   .essence-text {
     font-size: 15px;
     line-height: 1.7;
   }
+
   .stack-box {
     flex: 0 0 120px;
   }
+
   .stack-box.b1 {
     height: 140px;
   }
@@ -469,12 +513,17 @@ h4 {
   .stack-box.b4 {
     height: 240px;
   }
+
+  /* make sure video text fits on narrow screens */
+  .signature-svg text {
+    font-size: 100px !important;
+  }
 }
 
-/* ----------- Extra Small Devices (≤ 360px) ----------- */
+/* ---------- EXTRA SMALL PHONES (≤360px) ---------- */
 @media (max-width: 360px) {
   .hero h1 {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .hero .subheading {
@@ -482,7 +531,32 @@ h4 {
   }
 
   .btn {
-    padding: 10px 18px;
     font-size: 13px;
+    padding: 10px 18px;
+  }
+
+  .essence-title {
+    font-size: 24px;
+  }
+
+  .essence-text {
+    font-size: 14px;
+  }
+
+  .stack-box {
+    flex: 0 0 100px;
+  }
+
+  .stack-box.b1 {
+    height: 120px;
+  }
+  .stack-box.b2 {
+    height: 150px;
+  }
+  .stack-box.b3 {
+    height: 180px;
+  }
+  .stack-box.b4 {
+    height: 210px;
   }
 }

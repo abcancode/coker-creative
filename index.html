@@ -97,19 +97,19 @@
         <div class="essence-stacks">
           <div
             class="stack-box b1"
-            style="--bg: url('/assets/images/essence-1.jpg')"
+            style="--bg: url('/assets/images/essence-bg-1.jpg')"
           ></div>
           <div
             class="stack-box b2"
-            style="--bg: url('/assets/images/essence-2.jpg')"
+            style="--bg: url('/assets/images/essence-bg-2.jpg')"
           ></div>
           <div
             class="stack-box b3"
-            style="--bg: url('/assets/images/essence-3.jpg')"
+            style="--bg: url('/assets/images/essence-bg-3.jpg')"
           ></div>
           <div
             class="stack-box b4"
-            style="--bg: url('/assets/images/essence-4.jpg')"
+            style="--bg: url('/assets/images/essence-bg-4.jpg')"
           ></div>
         </div>
       </div>
@@ -120,48 +120,83 @@
       <!-- Left: signature video-in-text -->
       <div class="essence-col left">
         <div class="signature-block">
-          <!-- Inline SVG mask with text that reveals the video only inside letters -->
           <svg
             class="signature-svg"
-            viewBox="0 0 1200 420"
+            viewBox="0 0 2400 700"
+            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             role="img"
+            preserveAspectRatio="xMidYMid meet"
           >
             <defs>
-              <!-- White = visible, Black = hidden -->
+              <!-- Filter to thicken (dilate) the filled glyphs.
+       radius controls thickness. Increase to make letters thicker. -->
+              <filter
+                id="thicken"
+                x="-20%"
+                y="-20%"
+                width="140%"
+                height="140%"
+                filterUnits="objectBoundingBox"
+              >
+                <feMorphology operator="dilate" radius="7" />
+                <feComposite in="SourceGraphic" operator="over" />
+              </filter>
+
+              <!-- mask uses white = visible. We will draw white-filled text and apply the thicken filter. -->
               <mask id="signature-mask" maskUnits="userSpaceOnUse">
-                <rect x="0" y="0" width="1200" height="420" fill="black" />
-                <!-- Top line -->
-                <text
-                  x="0"
-                  y="170"
-                  fill="white"
-                  font-family="MADE Bon Voyage, serif"
-                  font-size="150"
-                  letter-spacing="2"
-                >
-                  COKER CREATIVE
-                </text>
-                <!-- Bottom line -->
-                <text
-                  x="0"
-                  y="340"
-                  fill="white"
-                  font-family="MADE Bon Voyage, serif"
-                  font-size="140"
-                  letter-spacing="2"
-                >
-                  SIGNATURE EXPERIENCES
-                </text>
+                <rect x="0" y="0" width="2400" height="700" fill="black" />
+
+                <!-- Line 1: COKER CREATIVE -->
+                <g filter="url(#thicken)">
+                  <text
+                    x="120"
+                    y="200"
+                    fill="white"
+                    font-family="Inter, sans-serif"
+                    font-size="180"
+                    text-anchor="start"
+                  >
+                    COKER CREATIVE
+                  </text>
+                </g>
+
+                <!-- Line 2: SIGNATURE -->
+                <g filter="url(#thicken)">
+                  <text
+                    x="120"
+                    y="440"
+                    fill="white"
+                    font-family="Inter, sans-serif"
+                    font-size="180"
+                    text-anchor="start"
+                  >
+                    SIGNATURE
+                  </text>
+                </g>
+
+                <!-- Line 3: EXPERIENCES -->
+                <g filter="url(#thicken)">
+                  <text
+                    x="120"
+                    y="680"
+                    fill="white"
+                    font-family="Inter, sans-serif"
+                    font-size="180"
+                    text-anchor="start"
+                  >
+                    EXPERIENCES
+                  </text>
+                </g>
               </mask>
             </defs>
 
-            <!-- The video is placed inside the SVG via foreignObject and masked by the text -->
+            <!-- Masked video (foreignObject) -->
             <foreignObject
               x="0"
               y="0"
-              width="1200"
-              height="420"
+              width="2400"
+              height="700"
               mask="url(#signature-mask)"
             >
               <video
