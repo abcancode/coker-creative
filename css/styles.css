@@ -430,7 +430,7 @@ h3 {
 
 /* TESTIMONIALS */
 .testimonials {
-  padding: 6rem 3rem;
+  padding: 1rem 3rem;
 }
 
 .testimonial-box {
@@ -536,7 +536,7 @@ h3 {
 
 /* RECOGNITION */
 .recognition {
-  padding: 5rem 3rem;
+  padding: 3rem;
   text-align: center;
 }
 
@@ -919,6 +919,8 @@ h3 {
 
   .footer-top h2 {
     font-size: 32px;
+    line-height: 100%;
+    letter-spacing: 8%;
   }
 
   .footer-top p {
