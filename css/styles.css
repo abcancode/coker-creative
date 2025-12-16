@@ -575,14 +575,31 @@ h3 {
 /* FOOTER TOP */
 .footer-top {
   min-height: 80vh;
-  background: var(--accent);
+  background-color: var(--accent);
+  background-image: url("../assets/images/footer-image.png");
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: 280px;
   color: var(--light);
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 4rem 2rem;
+}
+
+.footer-top::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-repeat: inherit;
+  background-position: inherit;
+  background-size: inherit;
+  opacity: 0.08;
+  pointer-events: none;
 }
 
 .footer-top h2 {
@@ -835,9 +852,9 @@ h3 {
 
 @media (max-width: 767px) {
   /* GLOBAL SPACING */
-  section {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
+  section:not(.hero) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   /* HERO */
@@ -848,6 +865,21 @@ h3 {
 
   .hero-buttons {
     margin-top: 2.5rem;
+  }
+
+  .hero-scroll {
+    bottom: 3rem; /* lift it above browser UI */
+  }
+
+  .welcome-text {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .scroll-arrow {
+    width: 14px;
+    height: 14px;
+    border-width: 2px;
   }
 
   /* WHAT WE DO */
@@ -879,6 +911,12 @@ h3 {
   }
 
   /* FOOTER */
+  .footer-top {
+    background-size: 200px;
+    background-position: bottom 1.5rem right 1.5rem;
+    background-image: none;
+  }
+
   .footer-top h2 {
     font-size: 32px;
   }
