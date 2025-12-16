@@ -868,7 +868,7 @@ h3 {
   }
 
   .hero-scroll {
-    bottom: 3rem; /* lift it above browser UI */
+    bottom: 3.5rem; /* lift it above browser UI */
   }
 
   .welcome-text {
