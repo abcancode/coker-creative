@@ -285,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "assets/images/visual-5.jpg",
     "assets/images/visual-6.jpg",
     "assets/images/visual-7.jpg",
-    "assets/images/visual-8.jpeg",
+    "assets/images/visual-8.jpg",
   ];
 
   let current = 0;
@@ -314,4 +314,88 @@ document.addEventListener("DOMContentLoaded", () => {
     current = next;
     showingA = !showingA;
   }, 6000);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // ============================
+  // BOOK YOUR EXPERIENCE FORM
+  // ============================
+  const form = document.getElementById("experienceForm");
+
+  if (form) {
+    const steps = form.querySelectorAll(".form-step");
+    const indicator = document.getElementById("stepIndicator");
+    const nextBtn = document.getElementById("nextStep");
+    const prevBtn = document.getElementById("prevStep");
+    const submitBtn = document.getElementById("submitBtn");
+
+    let currentStep = 0;
+
+    function updateSteps() {
+      steps.forEach((step, index) => {
+        step.classList.toggle("active", index === currentStep);
+      });
+
+      indicator.textContent = `Step ${currentStep + 1} of ${steps.length}`;
+
+      prevBtn.style.display = currentStep === 0 ? "none" : "inline-block";
+      nextBtn.style.display =
+        currentStep === steps.length - 1 ? "none" : "inline-block";
+      submitBtn.style.display =
+        currentStep === steps.length - 1 ? "inline-block" : "none";
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        updateSteps();
+      }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (currentStep > 0) {
+        currentStep--;
+        updateSteps();
+      }
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+
+      // 🔗 Hook here for EmailJS / API / Supabase
+      setTimeout(() => {
+        form.reset();
+        currentStep = 0;
+        submitBtn.disabled = false;
+        submitBtn.textContent = "SUBMIT EXPERIENCE REQUEST";
+        updateSteps();
+      }, 1200);
+    });
+
+    updateSteps();
+  }
+
+  // ============================
+  // BOOK EXPERIENCE VISUAL SWIPE
+  // ============================
+  const visuals = document.querySelectorAll(".experience-visual .visual-bg");
+
+  if (!visuals.length) return;
+
+  let current = 0;
+
+  visuals.forEach((bg, i) => {
+    bg.classList.toggle("active", i === 0);
+  });
+
+  function rotateVisuals() {
+    visuals[current].classList.remove("active");
+    current = (current + 1) % visuals.length;
+    visuals[current].classList.add("active");
+  }
+
+  setInterval(rotateVisuals, 6500);
 });
