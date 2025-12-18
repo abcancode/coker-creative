@@ -45,45 +45,54 @@ if (welcomeArrow) {
 }
 
 /* =========================
-   TESTIMONIALS (HOME ONLY)
+   TESTIMONIALS (SAFE)
 ========================= */
-const imageEl = document.getElementById("testimonialImage");
-const textEl = document.getElementById("testimonialText");
-const authorEl = document.getElementById("testimonialAuthor");
-const prevBtn = document.getElementById("prevTestimonial");
-const nextBtn = document.getElementById("nextTestimonial");
+document.addEventListener("DOMContentLoaded", () => {
+  const imageEl = document.getElementById("testimonialImage");
+  const textEl = document.getElementById("testimonialText");
+  const authorEl = document.getElementById("testimonialAuthor");
+  const prevBtn = document.getElementById("prevTestimonial");
+  const nextBtn = document.getElementById("nextTestimonial");
 
-if (imageEl && textEl && authorEl && prevBtn && nextBtn) {
-  let currentIndex = 0;
+  if (!imageEl || !textEl || !authorEl || !prevBtn || !nextBtn) return;
 
   const testimonials = [
     {
       image: "assets/images/client.jpg",
-      text: "...",
+      text: "Working with Gozie on the KAI Collective Houston Sample Sale was an absolute masterclass in proactive, creative and thoughtful execution. She anticipated needs before they arose, communicated with clarity and confidence, and ran every detail with calm precision. Her level of organization, creativity and initiative has genuinely raised the bar for how we approach events going forward, and our standards have been upped forever as a result. We cannot wait to work with Coker Creative again!!",
       author: "FISAYO LONGE",
     },
     {
-      image: "assets/images/maggi.jpg",
-      text: "...",
+      image: "assets/images/CLIENT.jpg",
+      text: "I knew from the start that I wanted Gozie and Coker Creative to plan our wedding, and she exceeded every expectation. She made me feel completely at ease, truly heard, and confidently supported throughout the process. Gozie is a creative genius—calm, solutions-oriented, and incredibly thoughtful in every detail, from vendor recommendations to guest experience. Her clear communication, organized timelines, and attention to detail made everything seamless. Choosing Coker Creative was the best decision we made for our destination wedding, and I would recommend her to anyone planning an event.",
       author: "EDIA UKO EBIGBEYI",
     },
   ];
 
+  let currentIndex = 0;
+
   function updateTestimonial(index) {
-    imageEl.classList.add("testimonial-fade-out");
-    textEl.classList.add("testimonial-fade-out");
-    authorEl.classList.add("testimonial-fade-out");
+    imageEl.classList.add("fade-out");
+    textEl.classList.add("fade-out");
+    authorEl.classList.add("fade-out");
 
     setTimeout(() => {
       imageEl.src = testimonials[index].image;
       textEl.textContent = testimonials[index].text;
       authorEl.textContent = testimonials[index].author;
 
-      imageEl.classList.remove("testimonial-fade-out");
-      textEl.classList.remove("testimonial-fade-out");
-      authorEl.classList.remove("testimonial-fade-out");
+      imageEl.classList.remove("fade-out");
+      textEl.classList.remove("fade-out");
+      authorEl.classList.remove("fade-out");
+
+      imageEl.classList.add("fade-in");
+      textEl.classList.add("fade-in");
+      authorEl.classList.add("fade-in");
     }, 300);
   }
+
+  // Init
+  updateTestimonial(currentIndex);
 
   nextBtn.addEventListener("click", () => {
     currentIndex = (currentIndex + 1) % testimonials.length;
@@ -95,7 +104,7 @@ if (imageEl && textEl && authorEl && prevBtn && nextBtn) {
       (currentIndex - 1 + testimonials.length) % testimonials.length;
     updateTestimonial(currentIndex);
   });
-}
+});
 
 /* =========================
    GO TO TOP
@@ -113,48 +122,63 @@ if (goTopBtn) {
 }
 
 /* =========================
-   WHO WE ARE HERO ROTATION
+   WHO WE ARE & EXPERIENCE HERO ROTATION
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector("[data-hero]");
+  if (!hero) return;
+
   const bgA = document.getElementById("heroBgA");
   const bgB = document.getElementById("heroBgB");
 
   if (!bgA || !bgB) return;
 
-  const images = [
-    "assets/images/who-hero-1.jpg",
-    "assets/images/who-hero-2.jpg",
-    "assets/images/who-hero-3.jpg",
-    "assets/images/who-hero-4.jpg",
-    "assets/images/who-hero-5.jpg",
-  ];
+  const imageSets = {
+    who: [
+      "assets/images/who-hero-1.jpg",
+      "assets/images/who-hero-2.jpg",
+      "assets/images/who-hero-3.jpg",
+      "assets/images/who-hero-4.jpg",
+      "assets/images/who-hero-5.jpg",
+    ],
+    experience: [
+      "assets/images/experience-hero-1.jpg",
+      "assets/images/experience-hero-2.jpg",
+      "assets/images/experience-hero-3.jpg",
+      "assets/images/experience-hero-4.jpg",
+      "assets/images/experience-hero-5.jpg",
+      "assets/images/experience-hero-6.jpg",
+    ],
+  };
+
+  const key = hero.dataset.hero;
+  const images = imageSets[key];
+
+  if (!images || images.length === 0) return;
 
   let index = 0;
-  let showingA = true;
+  let active = bgA;
+  let inactive = bgB;
 
-  // Preload
+  // preload
   images.forEach((src) => {
     const img = new Image();
     img.src = src;
   });
 
-  // Initial image
-  bgA.style.backgroundImage = `url(${images[0]})`;
-  bgA.classList.add("active", "zoom");
+  // initial
+  active.style.backgroundImage = `url(${images[0]})`;
+  active.classList.add("active", "zoom");
 
   setInterval(() => {
-    const nextIndex = (index + 1) % images.length;
-    const incoming = showingA ? bgB : bgA;
-    const outgoing = showingA ? bgA : bgB;
+    index = (index + 1) % images.length;
 
-    incoming.style.backgroundImage = `url(${images[nextIndex]})`;
+    inactive.style.backgroundImage = `url(${images[index]})`;
+    inactive.classList.add("active", "zoom");
 
-    // Prepare incoming
-    incoming.classList.add("active", "zoom");
-    outgoing.classList.remove("active", "zoom");
+    active.classList.remove("active", "zoom");
 
-    showingA = !showingA;
-    index = nextIndex;
+    [active, inactive] = [inactive, active];
   }, 6000);
 });
 
@@ -259,6 +283,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "assets/images/visual-3.jpg",
     "assets/images/visual-4.jpg",
     "assets/images/visual-5.jpg",
+    "assets/images/visual-6.jpg",
+    "assets/images/visual-7.jpg",
+    "assets/images/visual-8.jpeg",
   ];
 
   let current = 0;

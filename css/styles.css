@@ -489,17 +489,18 @@ h3 {
 }
 
 /* TESTIMONIALS */
+/* TESTIMONIALS */
 .testimonials {
-  padding: 1rem 3rem;
+  padding: 4rem 3rem;
 }
 
 .testimonial-box {
+  max-width: 1200px;
   margin: 0 auto;
-  background: var(--light);
   display: grid;
-  grid-template-columns: 420px 1fr; /* fixed image column */
+  grid-template-columns: 420px 1fr;
   gap: 4rem;
-  align-items: flex-start;
+  align-items: center;
 }
 
 /* IMAGE */
@@ -510,52 +511,36 @@ h3 {
 }
 
 /* CONTENT */
-.testimonial-content {
-  text-align: left;
-  /* max-width: 520px; */
-}
-
 .testimonial-content h3 {
-  font-weight: 400;
   font-size: 30px;
-  line-height: 100%;
-  letter-spacing: 5%;
-  font-family: var(--font-secondary);
-  color: #020202;
+  font-weight: 400;
+  margin-bottom: 1.2rem;
 }
 
 .quote-icon {
   font-size: 2rem;
   color: var(--purple);
-  margin: 1.5rem 0;
+  margin-bottom: 1.5rem;
 }
 
 #testimonialText {
-  font-family: var(--font-primary);
-  font-weight: 300;
-  font-style: normal;
   font-size: 14px;
   line-height: 30px;
-  letter-spacing: 6%;
+  letter-spacing: 0.06em;
   color: #64607d;
+  margin-bottom: 1.5rem;
 }
 
 .author {
   display: block;
-  margin-top: 1.5rem;
-  font-weight: 400;
-  font-family: var(--font-secondary);
   font-size: 24px;
-  line-height: 100%;
-  letter-spacing: 5%;
-  font-style: normal;
+  margin-bottom: 2rem;
 }
 
-/* NAV ARROWS */
+/* NAV */
 .testimonial-nav {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
 }
 
 .testimonial-nav button {
@@ -563,13 +548,11 @@ h3 {
   height: 44px;
   border-radius: 50%;
   border: 1px solid var(--beige);
-  color: var(--purple);
   background: var(--light);
+  color: var(--purple);
+  font-size: 22px;
   cursor: pointer;
-  transition: background 0.3s ease;
-  font-size: 22px; /* increase symbol size */
-  font-weight: 400; /* slightly stronger presence */
-  line-height: 1; /* keeps symbol vertically centered */
+  transition: all 0.3s ease;
 }
 
 .testimonial-nav button:hover {
@@ -577,19 +560,19 @@ h3 {
   color: var(--light);
 }
 
-/* TESTIMONIAL TRANSITIONS */
+/* TRANSITIONS */
 .testimonial-box img,
-.testimonial-content p,
-.testimonial-content .author {
+#testimonialText,
+.author {
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.testimonial-fade-out {
+.fade-out {
   opacity: 0;
   transform: translateY(10px);
 }
 
-.testimonial-fade-in {
+.fade-in {
   opacity: 1;
   transform: translateY(0);
 }
@@ -639,7 +622,7 @@ h3 {
   background-image: url("../assets/images/footer-image.png");
   background-repeat: no-repeat;
   background-position: bottom right;
-  background-size: 280px;
+  background-size: 150px; /* ⬅ even smaller */
   color: var(--light);
   position: relative;
   display: flex;
@@ -649,17 +632,31 @@ h3 {
   text-align: center;
   padding: 4rem 2rem;
 }
-
 .footer-top::after {
   content: "";
   position: absolute;
   inset: 0;
+
   background-image: inherit;
   background-repeat: inherit;
   background-position: inherit;
   background-size: inherit;
-  opacity: 0.08;
+
+  opacity: 0.025; /* ⬅ almost imperceptible */
+  filter: grayscale(100%) brightness(70%) contrast(85%);
   pointer-events: none;
+}
+.footer-top > * {
+  position: relative;
+  z-index: 2;
+}
+
+.footer-top::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(64, 30, 55, 0.92), rgba(64, 30, 55, 0.92));
+  z-index: 1;
 }
 
 .footer-top h2 {
@@ -834,6 +831,14 @@ h3 {
 
   .hamburger {
     display: block;
+  }
+  .testimonial-box {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .testimonial-box img {
+    height: 380px;
   }
 }
 
