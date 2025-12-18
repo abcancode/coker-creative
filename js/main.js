@@ -1,33 +1,38 @@
+/* =========================
+   MOBILE MENU
+========================= */
 const hamburger = document.getElementById("hamburger");
 const mobileMenu = document.getElementById("mobileMenu");
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  mobileMenu.classList.toggle("open");
-  document.body.classList.toggle("menu-open");
-});
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    mobileMenu.classList.toggle("open");
+    document.body.classList.toggle("menu-open");
+  });
+}
 
-// Glass blur + header shrink on scroll
+/* =========================
+   HEADER SCROLL EFFECT
+========================= */
 const header = document.querySelector(".header");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 40) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
+if (header) {
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 40);
+  });
+}
 
+/* =========================
+   WELCOME CONFETTI (HOME ONLY)
+========================= */
 const welcomeArrow = document.getElementById("welcomeArrow");
 
 if (welcomeArrow) {
   welcomeArrow.addEventListener("click", () => {
-    // Prevent repeat confetti in same session
     if (sessionStorage.getItem("welcomeConfettiPlayed")) return;
-
     sessionStorage.setItem("welcomeConfettiPlayed", "true");
 
-    // Elegant, subtle confetti
     confetti({
       particleCount: 70,
       spread: 60,
@@ -39,94 +44,247 @@ if (welcomeArrow) {
   });
 }
 
-const testimonials = [
-  {
-    image: "assets/images/client.jpg",
-    text: `Working with Gozie on the KAI Collective Houston Sample Sale was an absolute masterclass in proactive, creative and thoughtful execution. She anticipated needs before they arose, communicated with clarity and confidence, and ran every detail with calm precision. Her level of organization, creativity and initiative has genuinely raised the bar for how we approach events going forward, and our standards have been upped forever as a result. We cannot wait to work with Coker Creative again!!`,
-    author: "FISAYO LONGE",
-  },
-  {
-    image: "assets/images/maggi.jpg",
-    text: `I knew I wanted Gozie and Coker Creative to plan our wedding even before we officially started planning, and she exceeded every expectation. Working with Gozie immediately put me at ease and gave me complete confidence that she was always advocating for us. She is a true creative genius, yet remains calm, composed and solutions-oriented no matter what. 
-
-One of the most important things when choosing a planner is finding someone you can be completely free and comfortable with; someone you can be honest with about your vision, your preferences, and even what you don’t like. Gozie was exactly that for me and I felt heard and supported. She went above and beyond at every stage recommending great vendors and ensuring our guests were well taken care of. Throughout the planning process, her communication was clear and thoughtful with detailed spreadsheets and well-organized timelines that made everything feel seamless. 
-
-I recommend Gozie and Coker Creative to everyone I know who is getting married or planning an event. The CC touch is truly second to none! Choosing her was the best decision we made for our destination wedding and I would absolutely choose her again. .`,
-    author: "EDIA UKO EBIGBEYI ",
-  },
-];
-
-let currentIndex = 0;
-
+/* =========================
+   TESTIMONIALS (HOME ONLY)
+========================= */
 const imageEl = document.getElementById("testimonialImage");
 const textEl = document.getElementById("testimonialText");
 const authorEl = document.getElementById("testimonialAuthor");
-
 const prevBtn = document.getElementById("prevTestimonial");
 const nextBtn = document.getElementById("nextTestimonial");
 
-function updateTestimonial(index) {
-  // Fade out
-  imageEl.classList.add("testimonial-fade-out");
-  textEl.classList.add("testimonial-fade-out");
-  authorEl.classList.add("testimonial-fade-out");
+if (imageEl && textEl && authorEl && prevBtn && nextBtn) {
+  let currentIndex = 0;
 
-  setTimeout(() => {
-    imageEl.src = testimonials[index].image;
-    textEl.textContent = testimonials[index].text;
-    authorEl.textContent = testimonials[index].author;
+  const testimonials = [
+    {
+      image: "assets/images/client.jpg",
+      text: "...",
+      author: "FISAYO LONGE",
+    },
+    {
+      image: "assets/images/maggi.jpg",
+      text: "...",
+      author: "EDIA UKO EBIGBEYI",
+    },
+  ];
 
-    // Fade in
-    imageEl.classList.remove("testimonial-fade-out");
-    textEl.classList.remove("testimonial-fade-out");
-    authorEl.classList.remove("testimonial-fade-out");
+  function updateTestimonial(index) {
+    imageEl.classList.add("testimonial-fade-out");
+    textEl.classList.add("testimonial-fade-out");
+    authorEl.classList.add("testimonial-fade-out");
 
-    imageEl.classList.add("testimonial-fade-in");
-    textEl.classList.add("testimonial-fade-in");
-    authorEl.classList.add("testimonial-fade-in");
-  }, 300);
+    setTimeout(() => {
+      imageEl.src = testimonials[index].image;
+      textEl.textContent = testimonials[index].text;
+      authorEl.textContent = testimonials[index].author;
+
+      imageEl.classList.remove("testimonial-fade-out");
+      textEl.classList.remove("testimonial-fade-out");
+      authorEl.classList.remove("testimonial-fade-out");
+    }, 300);
+  }
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % testimonials.length;
+    updateTestimonial(currentIndex);
+  });
+
+  prevBtn.addEventListener("click", () => {
+    currentIndex =
+      (currentIndex - 1 + testimonials.length) % testimonials.length;
+    updateTestimonial(currentIndex);
+  });
 }
 
-nextBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % testimonials.length;
-  updateTestimonial(currentIndex);
+/* =========================
+   GO TO TOP
+========================= */
+const goTopBtn = document.getElementById("goTop");
+
+if (goTopBtn) {
+  window.addEventListener("scroll", () => {
+    goTopBtn.classList.toggle("show", window.scrollY > 400);
+  });
+
+  goTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+/* =========================
+   WHO WE ARE HERO ROTATION
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const bgA = document.getElementById("heroBgA");
+  const bgB = document.getElementById("heroBgB");
+
+  if (!bgA || !bgB) return;
+
+  const images = [
+    "assets/images/who-hero-1.jpg",
+    "assets/images/who-hero-2.jpg",
+    "assets/images/who-hero-3.jpg",
+    "assets/images/who-hero-4.jpg",
+    "assets/images/who-hero-5.jpg",
+  ];
+
+  let index = 0;
+  let showingA = true;
+
+  // Preload
+  images.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+
+  // Initial image
+  bgA.style.backgroundImage = `url(${images[0]})`;
+  bgA.classList.add("active", "zoom");
+
+  setInterval(() => {
+    const nextIndex = (index + 1) % images.length;
+    const incoming = showingA ? bgB : bgA;
+    const outgoing = showingA ? bgA : bgB;
+
+    incoming.style.backgroundImage = `url(${images[nextIndex]})`;
+
+    // Prepare incoming
+    incoming.classList.add("active", "zoom");
+    outgoing.classList.remove("active", "zoom");
+
+    showingA = !showingA;
+    index = nextIndex;
+  }, 6000);
 });
 
-prevBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-  updateTestimonial(currentIndex);
-});
+/* =========================
+   CORE VALUES ANIMATIONS
+========================= */
+const coreBlocks = document.querySelectorAll(".core-block");
 
-// Footer entrance animation
-const footer = document.querySelector(".footer");
+if (coreBlocks.length) {
+  const coreObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          coreObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.25,
+      rootMargin: "0px 0px -60px 0px",
+    }
+  );
 
-if (footer) {
+  coreBlocks.forEach((block) => coreObserver.observe(block));
+}
+
+/* =========================
+   FEATURED IN SECTION
+========================= */
+
+const featuredSection = document.querySelector(".featured-in");
+
+if (featuredSection) {
+  const featuredObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        featuredSection.classList.add("in-view");
+        featuredObserver.unobserve(featuredSection);
+      }
+    },
+    { threshold: 0.3 }
+  );
+
+  featuredObserver.observe(featuredSection);
+}
+
+/* =========================
+   VISIONARY SECTION
+========================= */
+
+const visionary = document.querySelector(".visionary");
+
+if (visionary) {
+  const visionaryObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        visionary.classList.add("in-view");
+        visionaryObserver.unobserve(visionary);
+      }
+    },
+    { threshold: 0.3 }
+  );
+
+  visionaryObserver.observe(visionary);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const footer = document.querySelector(".footer");
+
+  if (!footer) return;
+
   const footerObserver = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
         footer.classList.add("footer-visible");
-        footerObserver.unobserve(footer); // run once
+        footerObserver.disconnect(); // cleaner than unobserve
       }
     },
-    { threshold: 0.2 }
+    {
+      root: null,
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px", // triggers slightly earlier
+    }
   );
 
   footerObserver.observe(footer);
-}
-
-const goTopBtn = document.getElementById("goTop");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 400) {
-    goTopBtn.classList.add("show");
-  } else {
-    goTopBtn.classList.remove("show");
-  }
 });
 
-goTopBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
+/* =========================
+   GALLERY SECTION
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const bgA = document.getElementById("visualBgA");
+  const bgB = document.getElementById("visualBgB");
+
+  if (!bgA || !bgB) return;
+
+  const images = [
+    "assets/images/visual-1.jpg",
+    "assets/images/visual-2.jpg",
+    "assets/images/visual-3.jpg",
+    "assets/images/visual-4.jpg",
+    "assets/images/visual-5.jpg",
+  ];
+
+  let current = 0;
+  let showingA = true;
+
+  // preload
+  images.forEach((src) => {
+    const img = new Image();
+    img.src = src;
   });
+
+  // initial state
+  bgA.style.backgroundImage = `url(${images[0]})`;
+  bgA.classList.add("active", "zoom");
+
+  setInterval(() => {
+    const next = (current + 1) % images.length;
+    const show = showingA ? bgB : bgA;
+    const hide = showingA ? bgA : bgB;
+
+    show.style.backgroundImage = `url(${images[next]})`;
+    show.classList.add("active", "zoom");
+
+    hide.classList.remove("active", "zoom");
+
+    current = next;
+    showingA = !showingA;
+  }, 6000);
 });
