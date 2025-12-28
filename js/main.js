@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       author: "FISAYO LONGE",
     },
     {
-      image: "assets/images/CLIENT.jpg",
+      image: "assets/images/client.jpg",
       text: "I knew from the start that I wanted Gozie and Coker Creative to plan our wedding, and she exceeded every expectation. She made me feel completely at ease, truly heard, and confidently supported throughout the process. Gozie is a creative genius—calm, solutions-oriented, and incredibly thoughtful in every detail, from vendor recommendations to guest experience. Her clear communication, organized timelines, and attention to detail made everything seamless. Choosing Coker Creative was the best decision we made for our destination wedding, and I would recommend her to anyone planning an event.",
       author: "EDIA UKO EBIGBEYI",
     },
