@@ -374,6 +374,7 @@ h3 {
 }
 
 .btn-filled {
+  margin-top: 1.4rem;
   background: var(--beige);
   color: var(--accent);
 }
