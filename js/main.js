@@ -136,10 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageSets = {
     who: [
       "assets/images/who-hero-1.jpg",
-      "assets/images/who-hero-2.jpg",
-      "assets/images/who-hero-3.jpg",
-      "assets/images/who-hero-4.jpg",
+      "assets/images/who-hero-2.jpeg",
+      "assets/images/who-hero-3.jpeg",
+      "assets/images/who-hero-4.jpeg",
       "assets/images/who-hero-5.jpg",
+      "assets/images/who-hero-6.jpg",
+      "assets/images/who-hero-7.jpg",
+      "assets/images/who-hero-8.jpg",
     ],
     experience: [
       "assets/images/experience-hero-1.jpg",
@@ -148,6 +151,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "assets/images/experience-hero-4.jpg",
       "assets/images/experience-hero-5.jpg",
       "assets/images/experience-hero-6.jpg",
+      "assets/images/experience-hero-7.jpg",
+      "assets/images/experience-hero-8.jpg",
     ],
   };
 

@@ -634,7 +634,7 @@ h3 {
   margin-bottom: 2rem;
 }
 
-.visionary-text .magic {
+.visionary-text .experiences {
   color: var(--purple);
 }
 
@@ -696,14 +696,14 @@ h3 {
   transform: translateY(0);
 }
 
-.magic {
+.experiences {
   position: relative;
   color: var(--purple);
   padding-bottom: 6px;
 }
 
 /* Underline */
-.magic::after {
+.experiences::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -716,11 +716,11 @@ h3 {
 }
 
 /* Soft glow */
-.visionary.in-view .magic {
+.visionary.in-view .experiences {
   text-shadow: 0 0 12px rgba(163, 93, 161, 0.25);
 }
 
-.visionary.in-view .magic::after {
+.visionary.in-view .experiences::after {
   width: 100%;
 }
 

@@ -352,7 +352,7 @@ h3 {
 }
 
 .visual-b {
-  background-image: url("../assets/images/book-visual-2.jpg");
+  background-image: url("../assets/images/book-visual-2.jpeg");
 }
 
 .visual-c {
@@ -360,7 +360,7 @@ h3 {
 }
 
 .visual-d {
-  background-image: url("../assets/images/book-visual-4.jpg");
+  background-image: url("../assets/images/book-visual-4.jpeg");
 }
 
 .visual-e {
@@ -369,6 +369,26 @@ h3 {
 
 .visual-f {
   background-image: url("../assets/images/book-visual-6.jpg");
+}
+
+.visual-g {
+  background-image: url("../assets/images/book-visual-7.jpg");
+}
+
+.visual-h {
+  background-image: url("../assets/images/book-visual-8.jpg");
+}
+
+.visual-i {
+  background-image: url("../assets/images/book-visual-9.jpeg");
+}
+
+.visual-j {
+  background-image: url("../assets/images/book-visual-10.jpg");
+}
+
+.visual-k {
+  background-image: url("../assets/images/book-visual-11.jpeg");
 }
 /* Soft overlay */
 .experience-visual::after {
