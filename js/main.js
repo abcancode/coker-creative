@@ -58,12 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const testimonials = [
     {
-      image: "assets/images/client.jpg",
+      image: "assets/images/fisayo-longe.jpg",
       text: "Working with Gozie on the KAI Collective Houston Sample Sale was an absolute masterclass in proactive, creative and thoughtful execution. She anticipated needs before they arose, communicated with clarity and confidence, and ran every detail with calm precision. Her level of organization, creativity and initiative has genuinely raised the bar for how we approach events going forward, and our standards have been upped forever as a result. We cannot wait to work with Coker Creative again!!",
       author: "FISAYO LONGE",
     },
     {
-      image: "assets/images/client.jpg",
+      image: "assets/images/edia.jpeg",
       text: "I knew from the start that I wanted Gozie and Coker Creative to plan our wedding, and she exceeded every expectation. She made me feel completely at ease, truly heard, and confidently supported throughout the process. Gozie is a creative genius—calm, solutions-oriented, and incredibly thoughtful in every detail, from vendor recommendations to guest experience. Her clear communication, organized timelines, and attention to detail made everything seamless. Choosing Coker Creative was the best decision we made for our destination wedding, and I would recommend her to anyone planning an event.",
       author: "EDIA UKO EBIGBEYI",
     },
